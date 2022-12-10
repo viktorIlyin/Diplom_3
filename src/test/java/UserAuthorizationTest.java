@@ -1,12 +1,12 @@
-import Pages.LoginPage;
-import Pages.MainPage;
-import Pages.RecoveryPasswordForm;
-import Pages.RegistrationPage;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import pages.LoginPage;
+import pages.MainPage;
+import pages.RecoveryPasswordForm;
+import pages.RegistrationPage;
 
 import java.util.Map;
 
@@ -37,7 +37,6 @@ public class UserAuthorizationTest {
     @Test
     @DisplayName("Вход по кнопке Войти в аккаунт")
     public void userLoginByEnterAccountButton() {
-
         Map<String, String> userData = userHelper.register();
         mainPage.clickEnterAccountButton();
         loginPage.enterCredentialsAndClickEnter(userData.get("email"), userData.get("password"));
@@ -48,34 +47,31 @@ public class UserAuthorizationTest {
     @Test
     @DisplayName("Вход по кнопке Личный кабинет")
     public void userLoginByPersonalCabinetButton() {
-
         mainPage.clickPersonalCabinetButton();
         String actualUrl = url();
-        assertEquals("Не прошел переход на страницу логина", actualUrl, LOGIN_URL);
+        assertEquals("Не прошел переход на страницу логина", LOGIN_URL, actualUrl);
 
     }
 
     @Test
     @DisplayName("Вход через кнопку на форме регистрации")
     public void userLoginFromRegistrationForm() {
-
         mainPage.clickEnterAccountButton();
         loginPage.clickRegistrationButton();
         registrationPage.clickEnterAccountButton();
         String actualUrl = url();
-        assertEquals("Не прошел переход на страницу логина", actualUrl, LOGIN_URL);
+        assertEquals("Не прошел переход на страницу логина", LOGIN_URL, actualUrl);
 
     }
 
     @Test
     @DisplayName("Вход через кнопку на форме восстановления пароля")
     public void userLoginFromPasswordRecoveryForm() {
-
         mainPage.clickEnterAccountButton();
         loginPage.clickRecoveryButton();
         recoveryPage.clickEnterButton();
         String actualUrl = url();
-        assertEquals("Не прошел переход на страницу логина", actualUrl, LOGIN_URL);
+        assertEquals("Не прошел переход на страницу логина", LOGIN_URL, actualUrl);
     }
 
     @After

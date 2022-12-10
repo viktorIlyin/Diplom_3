@@ -1,12 +1,12 @@
-import Pages.LoginPage;
-import Pages.MainPage;
-import Pages.RegistrationPage;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import pages.LoginPage;
+import pages.MainPage;
+import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
@@ -32,10 +32,8 @@ public class UserRegistrationTest {
         mainPage.clickEnterAccountButton();
         loginPage.clickRegistrationButton();
         String userName = RandomStringUtils.randomAlphabetic(7);
-        String userEmail =
-                RandomStringUtils.randomAlphabetic(4) + "@" + RandomStringUtils.randomAlphabetic(4) + ".ru";
+        String userEmail = RandomStringUtils.randomAlphabetic(4) + "@" + RandomStringUtils.randomAlphabetic(4) + ".ru";
         String userPassword = RandomStringUtils.randomAlphabetic(7);
-
         registrationPage.setUserDataAndRegister(userName, userEmail, userPassword);
         loginPage.isOpen();
         loginPage.enterCredentialsAndClickEnter(userEmail, userPassword);

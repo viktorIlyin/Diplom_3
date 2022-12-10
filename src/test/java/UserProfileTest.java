@@ -1,11 +1,11 @@
-import Pages.LoginPage;
-import Pages.MainPage;
-import Pages.UserProfilePage;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import pages.LoginPage;
+import pages.MainPage;
+import pages.UserProfilePage;
 
 import java.util.Map;
 
@@ -23,7 +23,6 @@ public class UserProfileTest {
 
     @Before
     public void setUp() {
-
         WebDriverRunner.getWebDriver().manage().window().maximize();
         userHelper = new UserOperations();
         Map<String, String> userData = userHelper.register();
@@ -50,7 +49,6 @@ public class UserProfileTest {
     @Test
     @DisplayName("Переход на главную страницу из Личного кабинета по кнопке конструктор")
     public void isMainPageReachableByConstructorButton() {
-
         profilePage.clickConstructorButton();
         assertTrue(mainPage.isMainPageLoggedAuthorised());
     }
@@ -58,7 +56,6 @@ public class UserProfileTest {
     @Test
     @DisplayName("Переход на страницу логина из Личного кабинета по кнопке Выход")
     public void isLoginPageReachableByExitButton() {
-
         profilePage.clickExitButton();
         assertTrue(loginPage.isOpen());
     }
